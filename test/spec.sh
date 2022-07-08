@@ -81,6 +81,14 @@ install-shells() {
   link-busybox-ash
 }
 
+install-shells-fedora() {
+  set -x  # show what needs sudo
+  # busybox is statically linked by default on fedora
+  sudo dnf install busybox mksh zsh dash
+  set +x
+  link-busybox-ash
+}
+
 check-shells-exist() {
   # We need these shells to run OSH spec tests.
 

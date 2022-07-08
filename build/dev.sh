@@ -34,6 +34,20 @@ ubuntu-deps() {
   test/spec.sh install-shells
 }
 
+fedora-deps() {
+  # python2.7: for all the extension modules; also provides python2.7-devel
+  # gawk: used by spec-runner.sh for the special match() function.
+  # time: used to collect the exit code and timing of a test
+  # readline-devel: needed for the build/prepare.sh Python build.
+  # cmake: for build/dev.sh yajl-release
+  set -x  # show what needs sudo
+  sudo dnf install \
+    python2.7 gawk readline-devel ninja-build cmake \
+    python3-pip
+
+  test/spec.sh install-shells-fedora
+}
+
 # This is what Python uses on OS X.
 #
 # https://www.thrysoee.dk/editline/
